@@ -37,8 +37,10 @@ function createBookContainer(book) {
     const author = document.createElement('p');
     const page = document.createElement('p');
     const read = document.createElement('p');
+    const removeButton = document.createElement('button');
 
     bookContainer.classList.toggle('book');
+    removeButton.classList.toggle('button-remove');
     title.classList.toggle('title');
     author.classList.toggle('author');
     page.classList.toggle('page');
@@ -47,15 +49,16 @@ function createBookContainer(book) {
     title.textContent = book.title;
     author.textContent = book.author;
     page.textContent = book.page;
+    removeButton.textContent = "x";
 
-    bookContainer.append(title, author, page, read);
+    removeButton.addEventListener('click', event => {
+        bookContainer.remove();
+    })
+
+    bookContainer.append(title, author, page, read, removeButton);
 
     library.appendChild(bookContainer);
 }
-
-addBookToLibrary('Think Like a Programmer', 'V. Anton Spraul', '233', 'true');
-addBookToLibrary('Lord of the Rings', 'J.R.R. Tolkien', '1178', 'false');
-addBookToLibrary('Harry Potter and the Sorcerer\'s Stone', 'J.K. Rowling', '309', 'false');
 
 const addButton = document.createElement('button');
 addButton.classList.toggle('add-button');
@@ -117,4 +120,8 @@ addButton.addEventListener('click', event => {
 header.appendChild(addButton);
 mainContainer.append(header, library);
 body.appendChild(mainContainer);
+
+addBookToLibrary('Think Like a Programmer', 'V. Anton Spraul', '233', 'true');
+addBookToLibrary('Lord of the Rings', 'J.R.R. Tolkien', '1178', 'false');
+addBookToLibrary('Harry Potter and the Sorcerer\'s Stone', 'J.K. Rowling', '309', 'false');
 

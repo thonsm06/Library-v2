@@ -5,20 +5,24 @@
 }
 body {
     margin: 0;
-
+    width: 100vw;
+    height: 100vh;
 } 
 
 .main-container {
     display: grid; 
     grid-template: 100px 1fr / 1fr;
+    
 }
 
 
 .header {
     background-color: grey; 
     display: flex; 
-    justify-content: center; 
+    justify-content: start; 
     align-items: center;
+    padding-left: 40px;
+
 }
 .add-button {
     background-color: #44CF85; 
@@ -32,10 +36,23 @@ body {
 .form {
     display: grid;
     width: 500px;
-    border: 1px solid black;
+    border: 10px solid black;
+    border-radius: 20px;
     margin: auto;
-}
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50% )translateY(-50%);
+    font-size: 1.5rem;
+    padding: 30px;
 
+
+}
+input {
+    font-size: 2rem;
+    border: none;
+    background-color: rgb(207, 207, 207);
+}
 
 /*-----Library--------------------------*/
 .library {

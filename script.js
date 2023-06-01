@@ -17,15 +17,21 @@ function Book(title, author, page, read) {
 }
 
 function addBookToLibrary(title, author, page, read) {
-    const book = new Book(title, author, page, read);
-    myLibrary.push(book);
+    const temp_title = title.toLowerCase();
+    let match = false;
+    for(let i = 0; i < myLibrary.length; i++) {
+        if (temp_title !== myLibrary[i].title.toLowerCase()) {
+            continue; //keep running the loop until the end
+        } else {return match = true};
+    }
+    if(match === false){                                  //if match stays false after the loop
+        const book = new Book(title, author, page, read); //create the book object
+        myLibrary.push(book);                             //add to library array
+        createBookContainer(book);                        //create book DOM
+    }
 }
 
-addBookToLibrary('Think Like a Programmer', 'V. Anton Spraul', '233', 'true');
-addBookToLibrary('Lord of the Rings', 'J.R.R. Tolkien', '1178', 'false');
-addBookToLibrary('Harry Potter and the Sorcerer\'s Stone', 'J.K. Rowling', '309', 'false');
-
-myLibrary.forEach(book => {
+function createBookContainer(book) {
     const bookContainer = document.createElement('div'); //hold individual book contents
     const title = document.createElement('p');
     const author = document.createElement('p');
@@ -37,7 +43,7 @@ myLibrary.forEach(book => {
     author.classList.toggle('author');
     page.classList.toggle('page');
     read.classList.toggle('read');
-    
+
     title.textContent = book.title;
     author.textContent = book.author;
     page.textContent = book.page;
@@ -45,11 +51,14 @@ myLibrary.forEach(book => {
     bookContainer.append(title, author, page, read);
 
     library.appendChild(bookContainer);
-})
+}
+
+addBookToLibrary('Think Like a Programmer', 'V. Anton Spraul', '233', 'true');
+addBookToLibrary('Lord of the Rings', 'J.R.R. Tolkien', '1178', 'false');
+addBookToLibrary('Harry Potter and the Sorcerer\'s Stone', 'J.K. Rowling', '309', 'false');
 
 const addButton = document.createElement('button');
-addButton.classList.toggle('addBtn');
-addButton.style.cssText = 'background-color: #44CF85; color: white; border: none; border-radius: 40px; font-size: 3rem; padding: 0 40px';
+addButton.classList.toggle('add-button');
 addButton.textContent = '+';
 
 addButton.addEventListener('click', event => {
@@ -62,13 +71,14 @@ addButton.addEventListener('click', event => {
     const inputPage = document.createElement('input');
     const labelRead = document.createElement('label');
     const inputRead = document.createElement('input');
-    const submitButton = document.createElement('button');
+
+    form.classList.toggle('form');
 
     labelTitle.textContent = 'Title: ';
     labelAuthor.textContent = 'Author: ';
     labelPage.textContent = 'Page Number: ';
     labelRead.textContent = 'Read?';
-    submitButton.textContent = 'ADD';
+
 
     labelTitle.htmlFor = 'title';
     labelAuthor.htmlFor = 'author';
@@ -79,7 +89,7 @@ addButton.addEventListener('click', event => {
     inputAuthor.type = 'text';
     inputPage.type = 'text';
     inputRead.type = 'checkbox';
-    submitButton.type = 'submit';
+
 
     inputTitle.id = 'title';
     inputAuthor.id = 'author';
@@ -91,13 +101,20 @@ addButton.addEventListener('click', event => {
     inputPage.name = 'page';
     inputRead.name = 'read';
 
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'ADD';
+    submitButton.type = 'submit';
+
+    submitButton.addEventListener('click', event => {
+        addBookToLibrary(inputTitle.value, inputAuthor.value, inputPage.value, inputRead.value);
+        event.preventDefault();
+    });
+
     form.append(labelTitle, inputTitle, labelAuthor, inputAuthor, labelPage, inputPage, labelRead, inputRead, submitButton);
     body.appendChild(form);
-
-    event.preventDefault();
 })
-
 
 header.appendChild(addButton);
 mainContainer.append(header, library);
 body.appendChild(mainContainer);
+

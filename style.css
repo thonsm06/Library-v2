@@ -1,15 +1,18 @@
 :root {
     font-size: 12px;
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 body {
     margin: 0;
 
 } 
+
 .main-container {
     display: grid; 
     grid-template: 100px 1fr / 1fr;
 }
+
 
 .header {
     background-color: grey; 
@@ -17,13 +20,32 @@ body {
     justify-content: center; 
     align-items: center;
 }
+.add-button {
+    background-color: #44CF85; 
+    color: white; 
+    border: none; 
+    border-radius: 40px; 
+    font-size: 3rem; 
+    padding: 0 40px;
+}
 
+.form {
+    display: grid;
+    width: 500px;
+    border: 1px solid black;
+    margin: auto;
+}
+
+
+/*-----Library--------------------------*/
 .library {
     display: grid; 
     grid-template-columns: repeat(auto-fill, 200px); 
     gap: 32px; 
     padding: 50px;
 }
+
+
 
 
 /*-----Individual book------------------*/

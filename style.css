@@ -2,3 +2,44 @@
     font-size: 12px;
     font-family: sans-serif;
 }
+body {
+    margin: 0;
+
+} 
+.main-container {
+    display: grid; 
+    grid-template: 100px 1fr / 1fr;
+}
+
+.header {
+    background-color: grey; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.library {
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, 200px); 
+    gap: 32px; 
+    padding: 50px;
+}
+
+
+/*-----Individual book------------------*/
+.book {
+    background-color: rgb(0, 0, 0, 0.2); 
+    border: 3px solid black; 
+    border-radius: 10px; 
+    text-align: center
+}
+
+.title {
+    color: white; 
+    font-size: 2rem;
+}
+
+.author {
+    color: white; 
+    font-size: 1.5rem;
+}
